@@ -38,6 +38,36 @@ function Starfield() {
   );
 }
 
+function ProductBackdrop() {
+  const stars = useMemo(() => {
+    const count = 420;
+    const positions = new Float32Array(count * 3);
+    for (let i = 0; i < count; i += 1) {
+      const radius = 18 + Math.random() * 6;
+      const theta = Math.random() * Math.PI * 2;
+      const phi = Math.acos(2 * Math.random() - 1);
+      positions[i * 3] = radius * Math.sin(phi) * Math.cos(theta);
+      positions[i * 3 + 1] = radius * Math.cos(phi);
+      positions[i * 3 + 2] = radius * Math.sin(phi) * Math.sin(theta);
+    }
+    return positions;
+  }, []);
+
+  return (
+    <points>
+      <bufferGeometry>
+        <bufferAttribute
+          attach="attributes-position"
+          array={stars}
+          count={stars.length / 3}
+          itemSize={3}
+        />
+      </bufferGeometry>
+      <pointsMaterial size={0.12} color="#f2f2f2" sizeAttenuation />
+    </points>
+  );
+}
+
 function HeroStamp({ onEnter }) {
   const groupRef = useRef(null);
   const [hovered, setHovered] = useState(false);
@@ -174,9 +204,10 @@ function ProductViewer({ product, onClose, ageAccepted, onAcceptAge }) {
         {!showGate && (
           <div className="product-modal__content">
             <div className="product-modal__canvas">
-              <Canvas camera={{ position: [0, 1.2, 3.8], fov: 45 }}>
-                <color attach="background" args={["#0b0d12"]} />
-                <ambientLight intensity={0.5} />
+            <Canvas camera={{ position: [0, 1.2, 3.8], fov: 45 }}>
+              <color attach="background" args={["#0b0d12"]} />
+              <ProductBackdrop />
+              <ambientLight intensity={0.5} />
                 <directionalLight position={[4, 6, 2]} intensity={1.2} color="#f6e2b5" />
                 <pointLight position={[-4, 1.5, 1]} intensity={0.7} color="#6dd6ff" />
                 <pointLight position={[3, 1.2, -1.5]} intensity={0.7} color="#f2a873" />
