@@ -78,6 +78,18 @@ export const drops = [
         personalityKey: "clock",
         visualToken: "amber",
       },
+      {
+        id: "cooler",
+        name: "COOLER",
+        shopifyHandle: "cooler",
+        personalityName: "Nordic Blast",
+        personalityTagline: "Icy, relentless, and always pushing the party forward.",
+        quantity: 40,
+        soldOut: false,
+        serialFormat: "COMING SOON",
+        personalityKey: "cooler",
+        visualToken: "ice",
+      },
     ],
   },
   {
@@ -158,6 +170,18 @@ export const drops = [
         personalityKey: "clock",
         visualToken: "amber",
       },
+      {
+        id: "cooler-a",
+        name: "COOLER",
+        shopifyHandle: "cooler",
+        personalityName: "Nordic Blast",
+        personalityTagline: "Sealed deep in the cold. Party still pending.",
+        quantity: 40,
+        soldOut: true,
+        serialFormat: "Instance 040 of 40",
+        personalityKey: "cooler",
+        visualToken: "ice",
+      },
     ],
   },
 ];
@@ -174,4 +198,5 @@ export const accentColors = {
   ember: "#f29a41",
   gold: "#c9a24d",
   amber: "#f2b26a",
+  ice: "#7fd3ff",
 };

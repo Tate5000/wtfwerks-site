@@ -115,6 +115,21 @@ export default function ProductPedestal({ product, position, onSelect }) {
 
 function ProductGeometry({ productId, accent, hovered }) {
   const glow = hovered ? 0.55 : 0.2;
+  const lidRef = useRef(null);
+  const accentRef = useRef(null);
+
+  useFrame((state) => {
+    if (!productId.includes("cooler")) return;
+    const t = state.clock.getElapsedTime();
+    if (lidRef.current) {
+      lidRef.current.rotation.x = Math.sin(t * 1.2) * 0.08;
+      lidRef.current.position.y = 0.34 + Math.sin(t * 1.2) * 0.01;
+    }
+    if (accentRef.current && accentRef.current.material) {
+      accentRef.current.material.emissiveIntensity =
+        glow + Math.sin(t * 2.0) * 0.15;
+    }
+  });
   if (productId.includes("wallet")) {
     return (
       <group>
@@ -246,6 +261,33 @@ function ProductGeometry({ productId, accent, hovered }) {
     );
   }
 
+  if (productId.includes("cooler")) {
+    return (
+      <group>
+        <mesh position={[0, 0.18, 0]}>
+          <boxGeometry args={[0.62, 0.32, 0.42]} />
+          <meshStandardMaterial color="#cfe7f4" metalness={0.25} roughness={0.45} />
+        </mesh>
+        <mesh ref={lidRef} position={[0, 0.34, 0]}>
+          <boxGeometry args={[0.7, 0.08, 0.48]} />
+          <meshStandardMaterial color="#8fbfdc" metalness={0.4} roughness={0.35} />
+        </mesh>
+        <mesh ref={accentRef} position={[0, 0.2, 0.24]}>
+          <boxGeometry args={[0.5, 0.08, 0.06]} />
+          <meshStandardMaterial color={accent} emissive={accent} emissiveIntensity={glow} />
+        </mesh>
+        <mesh position={[-0.24, 0.18, -0.24]}>
+          <boxGeometry args={[0.06, 0.18, 0.06]} />
+          <meshStandardMaterial color="#7aa8c4" metalness={0.4} roughness={0.5} />
+        </mesh>
+        <mesh position={[0.24, 0.18, -0.24]}>
+          <boxGeometry args={[0.06, 0.18, 0.06]} />
+          <meshStandardMaterial color="#7aa8c4" metalness={0.4} roughness={0.5} />
+        </mesh>
+      </group>
+    );
+  }
+
   return (
     <group>
       <mesh position={[0, 0.18, 0]}>
@@ -274,5 +316,6 @@ function getEyesAnchor(productId) {
   if (productId.includes("purse")) return [0.1, 0.22, 0.26];
   if (productId.includes("backpack")) return [0, 0.24, 0.24];
   if (productId.includes("clock")) return [0, 0.28, 0.18];
+  if (productId.includes("cooler")) return [0, 0.22, 0.26];
   return [0, 0.22, 0.2];
 }

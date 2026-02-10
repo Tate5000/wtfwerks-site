@@ -69,6 +69,17 @@ const PERSONALITY = {
     jitter: 0.18,
     hoverBoost: 0.1,
   },
+  cooler: {
+    blinkMin: 2.2,
+    blinkMax: 3.6,
+    blinkSpeed: 3.6,
+    saccadeSpeed: 1.4,
+    pupil: 5.2,
+    openness: 0.7,
+    drift: 0.2,
+    jitter: 0.12,
+    hoverBoost: 0.05,
+  },
 };
 
 function nextBlink(config) {
