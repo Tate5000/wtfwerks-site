@@ -19,10 +19,11 @@ function CRTConsole({ onActivate }) {
     ctx.fillStyle = "rgba(65, 242, 166, 0.04)";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = "rgba(65, 242, 166, 0.9)";
-    ctx.font = "28px VT323, monospace";
+    ctx.font = "22px VT323, monospace";
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
-    ctx.fillText("Tap the screen to access personalities.", canvas.width / 2, canvas.height / 2);
+    ctx.fillText("Tap the screen to access", canvas.width / 2, canvas.height / 2 - 14);
+    ctx.fillText("personalities.", canvas.width / 2, canvas.height / 2 + 14);
     const texture = new THREE.CanvasTexture(canvas);
     texture.colorSpace = THREE.SRGBColorSpace;
     texture.minFilter = THREE.LinearFilter;
