@@ -513,6 +513,10 @@ canvas {
   .section {
     padding: 64px 6vw;
   }
+
+  .hero-copy {
+    display: none;
+  }
 }
 
 .back-link {
