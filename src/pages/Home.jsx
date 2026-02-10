@@ -243,6 +243,7 @@ function ProductViewer({ product, onClose, ageAccepted, onAcceptAge }) {
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeProduct, setActiveProduct] = useState(null);
+  const [gridCols, setGridCols] = useState(2);
   const [ageAccepted, setAgeAccepted] = useState(
     () => sessionStorage.getItem("wtfwerks_age_ok") === "true"
   );
@@ -314,10 +315,22 @@ export default function Home() {
       <main>
         <section id="products" className="section products" ref={productsRef}>
           <div className="section__header">
-            <h2>CERTIFIED OBJECTS</h2>
+            <div className="section__title-row">
+              <h2>CERTIFIED OBJECTS</h2>
+              <button
+                className="grid-toggle"
+                type="button"
+                aria-label="Change grid layout"
+                onClick={() =>
+                  setGridCols((value) => (value >= 3 ? 1 : value + 1))
+                }
+              >
+                <span className={`grid-icon grid-${gridCols}`} aria-hidden="true" />
+              </button>
+            </div>
             <p>Every drop ships with a personality baked in.</p>
           </div>
-          <div className="product-grid">
+          <div className={`product-grid cols-${gridCols}`}>
             {products.map((product) => (
               <ProductCard
                 key={product.id}

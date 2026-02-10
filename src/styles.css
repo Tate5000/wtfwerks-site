@@ -185,6 +185,58 @@ canvas {
   margin-bottom: 32px;
 }
 
+.section__title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.grid-toggle {
+  background: transparent;
+  border: 1px solid rgba(201, 162, 77, 0.35);
+  padding: 6px 8px;
+  cursor: pointer;
+}
+
+.grid-icon {
+  position: relative;
+  display: grid;
+  gap: 4px;
+  width: 34px;
+  height: 18px;
+}
+
+.grid-icon::before {
+  content: "";
+  display: grid;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.grid-1::before {
+  background-image: linear-gradient(rgba(201, 162, 77, 0.9), rgba(201, 162, 77, 0.9));
+}
+
+.grid-2::before {
+  background-image:
+    linear-gradient(rgba(201, 162, 77, 0.9), rgba(201, 162, 77, 0.9)),
+    linear-gradient(rgba(201, 162, 77, 0.9), rgba(201, 162, 77, 0.9));
+  background-size: calc(50% - 3px) 100%, calc(50% - 3px) 100%;
+  background-position: left center, right center;
+}
+
+.grid-3::before {
+  background-image:
+    linear-gradient(rgba(201, 162, 77, 0.9), rgba(201, 162, 77, 0.9)),
+    linear-gradient(rgba(201, 162, 77, 0.9), rgba(201, 162, 77, 0.9)),
+    linear-gradient(rgba(201, 162, 77, 0.9), rgba(201, 162, 77, 0.9));
+  background-size: calc(33.333% - 3px) 100%, calc(33.333% - 3px) 100%, calc(33.333% - 3px) 100%;
+  background-position: left center, center center, right center;
+}
+
 .section__header h2 {
   margin: 0;
   color: var(--brushed-gold);
@@ -201,6 +253,18 @@ canvas {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 28px;
+}
+
+.product-grid.cols-1 {
+  grid-template-columns: 1fr;
+}
+
+.product-grid.cols-2 {
+  grid-template-columns: repeat(2, minmax(240px, 1fr));
+}
+
+.product-grid.cols-3 {
+  grid-template-columns: repeat(3, minmax(220px, 1fr));
 }
 
 .product-card {
