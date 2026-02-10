@@ -485,6 +485,14 @@ canvas {
   overflow: auto;
 }
 
+.footer {
+  text-align: center;
+  padding: 28px 16px 40px;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  opacity: 0.6;
+}
+
 .app-download {
   background: radial-gradient(circle at top, #0b111a, #020203 70%);
   min-height: 100vh;

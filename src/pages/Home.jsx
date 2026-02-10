@@ -329,6 +329,10 @@ export default function Home() {
         </section>
       </main>
 
+      <footer className="footer">
+        WE MAKE THIS SHIT IN THE USA
+      </footer>
+
       {activeProduct && (
         <ProductViewer
           product={activeProduct}
