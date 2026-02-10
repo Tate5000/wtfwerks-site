@@ -122,14 +122,15 @@ function ProductCard({ product, onView }) {
 }
 
 function ProductViewer({ product, onClose, ageAccepted, onAcceptAge }) {
-  const isRestricted = product.id.includes("waterpipe");
+  const isRestricted = Boolean(product.requiresAgeGate);
+  const showGate = isRestricted && !ageAccepted;
   return (
     <div className="product-modal" onClick={onClose}>
       <div className="product-modal__inner" onClick={(event) => event.stopPropagation()}>
         <button className="product-modal__close" type="button" onClick={onClose}>
           Close
         </button>
-        {isRestricted && !ageAccepted && (
+        {showGate && (
           <div className="age-banner">
             <div>
               <strong>21+ CONTENT</strong> Waterpipe is restricted. Confirm you are 21+ to view.
@@ -137,37 +138,39 @@ function ProductViewer({ product, onClose, ageAccepted, onAcceptAge }) {
             <button type="button" onClick={onAcceptAge}>I’m 21+</button>
           </div>
         )}
-        <div className="product-modal__content">
-          <div className="product-modal__canvas">
-            <Canvas camera={{ position: [0, 1.2, 3.8], fov: 45 }}>
-              <color attach="background" args={["#0b0d12"]} />
-              <ambientLight intensity={0.5} />
-              <directionalLight position={[4, 6, 2]} intensity={1.2} color="#f6e2b5" />
-              <pointLight position={[-4, 1.5, 1]} intensity={0.7} color="#6dd6ff" />
-              <pointLight position={[3, 1.2, -1.5]} intensity={0.7} color="#f2a873" />
-              <group position={[0, -0.4, 0]}>
-                <ProductPedestal product={product} position={[0, 0, 0]} onSelect={() => {}} />
-              </group>
-            </Canvas>
-          </div>
-          <div className="product-modal__info">
-            <div className="product-modal__title">{product.name}</div>
-            <div className="product-modal__subtitle">{product.personalityName}</div>
-            <p>{product.personalityTagline}</p>
-            <div className="product-modal__meta">
-              <span>{product.serialFormat}</span>
-              <span>{product.soldOut ? "SEALED" : "LIVE"}</span>
+        {!showGate && (
+          <div className="product-modal__content">
+            <div className="product-modal__canvas">
+              <Canvas camera={{ position: [0, 1.2, 3.8], fov: 45 }}>
+                <color attach="background" args={["#0b0d12"]} />
+                <ambientLight intensity={0.5} />
+                <directionalLight position={[4, 6, 2]} intensity={1.2} color="#f6e2b5" />
+                <pointLight position={[-4, 1.5, 1]} intensity={0.7} color="#6dd6ff" />
+                <pointLight position={[3, 1.2, -1.5]} intensity={0.7} color="#f2a873" />
+                <group position={[0, -0.4, 0]}>
+                  <ProductPedestal product={product} position={[0, 0, 0]} onSelect={() => {}} />
+                </group>
+              </Canvas>
             </div>
-            <a
-              className="product-card__cta"
-              href={`${SHOP_BASE_URL}/products/${product.shopifyHandle}`}
-              target="_blank"
-              rel="noreferrer"
-            >
-              Purchase
-            </a>
+            <div className="product-modal__info">
+              <div className="product-modal__title">{product.name}</div>
+              <div className="product-modal__subtitle">{product.personalityName}</div>
+              <p>{product.personalityTagline}</p>
+              <div className="product-modal__meta">
+                <span>{product.serialFormat}</span>
+                <span>{product.soldOut ? "SEALED" : "LIVE"}</span>
+              </div>
+              <a
+                className="product-card__cta"
+                href={`${SHOP_BASE_URL}/products/${product.shopifyHandle}`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                Purchase
+              </a>
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );
