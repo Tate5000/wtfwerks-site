@@ -226,6 +226,9 @@ export default function Home() {
             <Link to="/personalities" onClick={() => setMenuOpen(false)}>
               Personalities
             </Link>
+            <Link to="/app" onClick={() => setMenuOpen(false)}>
+              App
+            </Link>
           </nav>
         )}
       </header>
