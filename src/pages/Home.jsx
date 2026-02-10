@@ -5,7 +5,7 @@ import * as THREE from "three";
 import { Link } from "react-router-dom";
 import { drops } from "../data/drops.js";
 import ProductPedestal from "../components/ProductPedestal.jsx";
-import stampMark from "../assets/logo.png";
+import LogoMark from "../components/LogoMark.jsx";
 
 function HeroStamp({ onEnter }) {
   const groupRef = useRef(null);
@@ -206,7 +206,7 @@ export default function Home() {
     <div className={`app ${activeProduct ? "modal-open" : ""}`}>
       <header className="topbar">
         <div className="logo">
-          <img src={stampMark} alt="WTFWERKS stamp" />
+          <LogoMark />
           <span>WTFWERKS</span>
         </div>
         <button

@@ -4,7 +4,7 @@ import * as THREE from "three";
 import { Link } from "react-router-dom";
 import { drops } from "../data/drops.js";
 import Apple2Terminal from "../components/Apple2Terminal.jsx";
-import stampMark from "../assets/logo.png";
+import LogoMark from "../components/LogoMark.jsx";
 
 function CRTConsole({ onActivate }) {
   const groupRef = useRef(null);
@@ -127,7 +127,7 @@ export default function Personalities() {
     <div className="app personalities-page">
       <header className="topbar">
         <div className="logo">
-          <img src={stampMark} alt="WTFWERKS stamp" />
+          <LogoMark />
           <span>WTFWERKS</span>
         </div>
         <Link className="back-link" to="/">

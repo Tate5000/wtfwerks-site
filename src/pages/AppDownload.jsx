@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
-import stampMark from "../assets/logo.png";
+import LogoMark from "../components/LogoMark.jsx";
 
 const APP_STORE_URL = "https://apps.apple.com/app/id0000000000";
 const PLAY_STORE_URL =
@@ -43,7 +43,7 @@ export default function AppDownload() {
     <div className="app app-download">
       <header className="topbar">
         <div className="logo">
-          <img src={stampMark} alt="WTFWERKS stamp" />
+          <LogoMark />
           <span>WTFWERKS</span>
         </div>
         <Link className="back-link" to="/">
