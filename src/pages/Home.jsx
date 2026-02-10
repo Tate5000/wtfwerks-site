@@ -8,68 +8,12 @@ import ProductPedestal from "../components/ProductPedestal.jsx";
 import LogoMark from "../components/LogoMark.jsx";
 import stampMark from "../assets/logo.png";
 
-function NebulaBackdrop() {
-  const texture = useMemo(() => {
-    const canvas = document.createElement("canvas");
-    canvas.width = 512;
-    canvas.height = 512;
-    const ctx = canvas.getContext("2d");
-    const gradient = ctx.createRadialGradient(180, 140, 40, 260, 220, 380);
-    gradient.addColorStop(0, "rgba(120, 200, 255, 0.9)");
-    gradient.addColorStop(0.4, "rgba(40, 120, 200, 0.55)");
-    gradient.addColorStop(0.7, "rgba(160, 90, 200, 0.35)");
-    gradient.addColorStop(1, "rgba(10, 12, 20, 0.95)");
-    ctx.fillStyle = gradient;
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    const warm = ctx.createRadialGradient(360, 360, 30, 280, 300, 260);
-    warm.addColorStop(0, "rgba(255, 170, 120, 0.75)");
-    warm.addColorStop(0.45, "rgba(200, 120, 90, 0.35)");
-    warm.addColorStop(1, "rgba(10, 12, 20, 0)");
-    ctx.fillStyle = warm;
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    for (let i = 0; i < 140; i += 1) {
-      const x = Math.random() * canvas.width;
-      const y = Math.random() * canvas.height;
-      const r = 20 + Math.random() * 80;
-      const alpha = 0.04 + Math.random() * 0.08;
-      const puff = ctx.createRadialGradient(x, y, 4, x, y, r);
-      puff.addColorStop(0, `rgba(140, 220, 255, ${alpha})`);
-      puff.addColorStop(1, "rgba(10, 12, 20, 0)");
-      ctx.fillStyle = puff;
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-    }
-
-    for (let i = 0; i < 220; i += 1) {
-      const x = Math.random() * canvas.width;
-      const y = Math.random() * canvas.height;
-      const alpha = 0.2 + Math.random() * 0.6;
-      ctx.fillStyle = `rgba(255,255,255,${alpha})`;
-      ctx.fillRect(x, y, 1, 1);
-    }
-    const tex = new THREE.CanvasTexture(canvas);
-    tex.colorSpace = THREE.SRGBColorSpace;
-    tex.wrapS = THREE.RepeatWrapping;
-    tex.wrapT = THREE.RepeatWrapping;
-    tex.repeat.set(2, 2);
-    return tex;
-  }, []);
-
-  return (
-    <mesh>
-      <sphereGeometry args={[40, 32, 32]} />
-      <meshBasicMaterial map={texture} side={THREE.BackSide} />
-    </mesh>
-  );
-}
-
 function Starfield() {
   const stars = useMemo(() => {
-    const count = 800;
+    const count = 500;
     const positions = new Float32Array(count * 3);
     for (let i = 0; i < count; i += 1) {
-      const radius = 35 + Math.random() * 10;
+      const radius = 34 + Math.random() * 8;
       const theta = Math.random() * Math.PI * 2;
       const phi = Math.acos(2 * Math.random() - 1);
       positions[i * 3] = radius * Math.sin(phi) * Math.cos(theta);
@@ -89,7 +33,7 @@ function Starfield() {
           itemSize={3}
         />
       </bufferGeometry>
-      <pointsMaterial size={0.18} color="#f2f2f2" sizeAttenuation />
+      <pointsMaterial size={0.14} color="#f2f2f2" sizeAttenuation />
     </points>
   );
 }
@@ -323,7 +267,6 @@ export default function Home() {
       <section className="hero">
         <Canvas camera={{ position: [0, 0.9, 5], fov: 45 }}>
           <color attach="background" args={["#07090e"]} />
-          <NebulaBackdrop />
           <Starfield />
           <ambientLight intensity={0.5} />
           <directionalLight position={[5, 6, 3]} intensity={1.1} color="#f6e2b5" />
