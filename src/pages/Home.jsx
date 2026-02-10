@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { drops } from "../data/drops.js";
 import ProductPedestal from "../components/ProductPedestal.jsx";
 import LogoMark from "../components/LogoMark.jsx";
+import stampMark from "../assets/logo.png";
 
 function HeroStamp({ onEnter }) {
   const groupRef = useRef(null);
