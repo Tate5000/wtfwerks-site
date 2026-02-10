@@ -282,14 +282,14 @@ canvas {
   width: min(1100px, 94vw);
   background: rgba(8, 10, 16, 0.95);
   border: 1px solid rgba(201, 162, 77, 0.35);
-  padding: 20px;
+  padding: 52px 20px 20px;
   position: relative;
 }
 
 .product-modal__close {
   position: absolute;
   right: 20px;
-  top: 16px;
+  top: 14px;
   background: transparent;
   border: 1px solid rgba(201, 162, 77, 0.5);
   color: #f5f0e6;
@@ -315,6 +315,15 @@ canvas {
   border: 1px solid rgba(201, 162, 77, 0.35);
   font-size: 12px;
   letter-spacing: 0.08em;
+}
+
+.age-banner__text {
+  max-width: 70%;
+}
+
+.age-banner__actions {
+  display: flex;
+  justify-content: flex-end;
 }
 
 .age-banner button {

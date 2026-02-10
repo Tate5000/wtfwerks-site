@@ -132,10 +132,12 @@ function ProductViewer({ product, onClose, ageAccepted, onAcceptAge }) {
         </button>
         {showGate && (
           <div className="age-banner">
-            <div>
+            <div className="age-banner__text">
               <strong>21+ CONTENT</strong> Waterpipe is restricted. Confirm you are 21+ to view.
             </div>
-            <button type="button" onClick={onAcceptAge}>I’m 21+</button>
+            <div className="age-banner__actions">
+              <button type="button" onClick={onAcceptAge}>I’m 21+</button>
+            </div>
           </div>
         )}
         {!showGate && (
