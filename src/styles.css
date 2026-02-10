@@ -304,6 +304,27 @@ canvas {
   align-items: center;
 }
 
+.age-banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+  background: rgba(8, 8, 8, 0.7);
+  border: 1px solid rgba(201, 162, 77, 0.35);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+}
+
+.age-banner button {
+  background: transparent;
+  border: 1px solid var(--brushed-gold);
+  color: var(--brushed-gold);
+  padding: 8px 12px;
+  font-size: 11px;
+}
+
 .product-modal__canvas {
   height: 420px;
   border: 1px solid rgba(201, 162, 77, 0.2);

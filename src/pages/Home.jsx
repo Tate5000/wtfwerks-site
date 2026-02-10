@@ -121,13 +121,22 @@ function ProductCard({ product, onView }) {
   );
 }
 
-function ProductViewer({ product, onClose }) {
+function ProductViewer({ product, onClose, ageAccepted, onAcceptAge }) {
+  const isRestricted = product.id.includes("waterpipe");
   return (
     <div className="product-modal" onClick={onClose}>
       <div className="product-modal__inner" onClick={(event) => event.stopPropagation()}>
         <button className="product-modal__close" type="button" onClick={onClose}>
           Close
         </button>
+        {isRestricted && !ageAccepted && (
+          <div className="age-banner">
+            <div>
+              <strong>21+ CONTENT</strong> Waterpipe is restricted. Confirm you are 21+ to view.
+            </div>
+            <button type="button" onClick={onAcceptAge}>I’m 21+</button>
+          </div>
+        )}
         <div className="product-modal__content">
           <div className="product-modal__canvas">
             <Canvas camera={{ position: [0, 1.2, 3.8], fov: 45 }}>
@@ -167,6 +176,9 @@ function ProductViewer({ product, onClose }) {
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeProduct, setActiveProduct] = useState(null);
+  const [ageAccepted, setAgeAccepted] = useState(
+    () => sessionStorage.getItem("wtfwerks_age_ok") === "true"
+  );
   const productsRef = useRef(null);
   const liveDrop = drops.find((drop) => drop.status === "LIVE");
   const products = liveDrop?.products || [];
@@ -247,7 +259,15 @@ export default function Home() {
       </main>
 
       {activeProduct && (
-        <ProductViewer product={activeProduct} onClose={() => setActiveProduct(null)} />
+        <ProductViewer
+          product={activeProduct}
+          onClose={() => setActiveProduct(null)}
+          ageAccepted={ageAccepted}
+          onAcceptAge={() => {
+            sessionStorage.setItem("wtfwerks_age_ok", "true");
+            setAgeAccepted(true);
+          }}
+        />
       )}
     </div>
   );
