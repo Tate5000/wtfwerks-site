@@ -224,7 +224,7 @@ export default function Home() {
         </Canvas>
         <div className="hero-overlay">
           <div className="hero-title">LUXURY OBJECTS WITH PERSONALITIES</div>
-          <div className="hero-subtitle">Designer utility. Street-coded intelligence.</div>
+          <div className="hero-subtitle">Fun is the Utility.</div>
         </div>
       </section>
 
